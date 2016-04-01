@@ -87,3 +87,69 @@ Connecting to database specified by database.yml
   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
   [1m[35mSQL (0.9ms)[0m  INSERT INTO "movies" ("Director", "created_at", "description", "rating", "release_date", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["Director", nil], ["created_at", Fri, 01 Apr 2016 01:49:08 UTC +00:00], ["description", nil], ["rating", "G"], ["release_date", Wed, 21 Jun 2000 00:00:00 UTC +00:00], ["title", "Chicken Run"], ["updated_at", Fri, 01 Apr 2016 01:49:08 UTC +00:00]]
   [1m[36m (26.8ms)[0m  [1mcommit transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (60.7ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20111119180638)
+Migrating to AddDirectorToMovies (20160401013926)
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (12.7ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20111119180638)
+Migrating to AddDirectorToMovies (20160401013926)
+Migrating to RemoveDirectorToMovies (20160401020226)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (6.5ms)[0m  CREATE TEMPORARY TABLE "altered_movies" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "rating" varchar(255), "description" text, "release_date" datetime, "created_at" datetime, "updated_at" datetime, "Director" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "movies"[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "altered_movies" ("id","title","rating","description","release_date","created_at","updated_at","Director") VALUES (1, 'Aladdin', 'G', NULL, '1992-11-25 00:00:00.000000', '2016-04-01 01:49:08.226330', '2016-04-01 01:49:08.226330', NULL)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "altered_movies" ("id","title","rating","description","release_date","created_at","updated_at","Director") VALUES (2, 'The Terminator', 'R', NULL, '1984-10-26 00:00:00.000000', '2016-04-01 01:49:08.287482', '2016-04-01 01:49:08.287482', NULL)[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "altered_movies" ("id","title","rating","description","release_date","created_at","updated_at","Director") VALUES (3, 'When Harry Met Sally', 'R', NULL, '1989-07-21 00:00:00.000000', '2016-04-01 01:49:08.304150', '2016-04-01 01:49:08.304150', NULL)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "altered_movies" ("id","title","rating","description","release_date","created_at","updated_at","Director") VALUES (4, 'The Help', 'PG-13', NULL, '2011-08-10 00:00:00.000000', '2016-04-01 01:49:08.331655', '2016-04-01 01:49:08.331655', NULL)[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "altered_movies" ("id","title","rating","description","release_date","created_at","updated_at","Director") VALUES (5, 'Chocolat', 'PG-13', NULL, '2001-01-05 00:00:00.000000', '2016-04-01 01:49:08.352897', '2016-04-01 01:49:08.352897', NULL)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "altered_movies" ("id","title","rating","description","release_date","created_at","updated_at","Director") VALUES (6, 'Amelie', 'R', NULL, '2001-04-25 00:00:00.000000', '2016-04-01 01:49:08.377229', '2016-04-01 01:49:08.377229', NULL)[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "altered_movies" ("id","title","rating","description","release_date","created_at","updated_at","Director") VALUES (7, '2001: A Space Odyssey', 'G', NULL, '1968-04-06 00:00:00.000000', '2016-04-01 01:49:08.402480', '2016-04-01 01:49:08.402480', NULL)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "altered_movies" ("id","title","rating","description","release_date","created_at","updated_at","Director") VALUES (8, 'The Incredibles', 'PG', NULL, '2004-11-05 00:00:00.000000', '2016-04-01 01:49:08.417459', '2016-04-01 01:49:08.417459', NULL)[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "altered_movies" ("id","title","rating","description","release_date","created_at","updated_at","Director") VALUES (9, 'Raiders of the Lost Ark', 'PG', NULL, '1981-06-12 00:00:00.000000', '2016-04-01 01:49:08.441180', '2016-04-01 01:49:08.441180', NULL)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "altered_movies" ("id","title","rating","description","release_date","created_at","updated_at","Director") VALUES (10, 'Chicken Run', 'G', NULL, '2000-06-21 00:00:00.000000', '2016-04-01 01:49:08.463826', '2016-04-01 01:49:08.463826', NULL)[0m
+  [1m[35m (0.5ms)[0m  DROP TABLE "movies"
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "movies" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "rating" varchar(255), "description" text, "release_date" datetime, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.2ms)[0m  SELECT * FROM "altered_movies"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "movies" ("id","title","rating","description","release_date","created_at","updated_at") VALUES (1, 'Aladdin', 'G', NULL, '1992-11-25 00:00:00.000000', '2016-04-01 01:49:08.226330', '2016-04-01 01:49:08.226330')[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "movies" ("id","title","rating","description","release_date","created_at","updated_at") VALUES (2, 'The Terminator', 'R', NULL, '1984-10-26 00:00:00.000000', '2016-04-01 01:49:08.287482', '2016-04-01 01:49:08.287482')
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "movies" ("id","title","rating","description","release_date","created_at","updated_at") VALUES (3, 'When Harry Met Sally', 'R', NULL, '1989-07-21 00:00:00.000000', '2016-04-01 01:49:08.304150', '2016-04-01 01:49:08.304150')[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "movies" ("id","title","rating","description","release_date","created_at","updated_at") VALUES (4, 'The Help', 'PG-13', NULL, '2011-08-10 00:00:00.000000', '2016-04-01 01:49:08.331655', '2016-04-01 01:49:08.331655')
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "movies" ("id","title","rating","description","release_date","created_at","updated_at") VALUES (5, 'Chocolat', 'PG-13', NULL, '2001-01-05 00:00:00.000000', '2016-04-01 01:49:08.352897', '2016-04-01 01:49:08.352897')[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "movies" ("id","title","rating","description","release_date","created_at","updated_at") VALUES (6, 'Amelie', 'R', NULL, '2001-04-25 00:00:00.000000', '2016-04-01 01:49:08.377229', '2016-04-01 01:49:08.377229')
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "movies" ("id","title","rating","description","release_date","created_at","updated_at") VALUES (7, '2001: A Space Odyssey', 'G', NULL, '1968-04-06 00:00:00.000000', '2016-04-01 01:49:08.402480', '2016-04-01 01:49:08.402480')[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "movies" ("id","title","rating","description","release_date","created_at","updated_at") VALUES (8, 'The Incredibles', 'PG', NULL, '2004-11-05 00:00:00.000000', '2016-04-01 01:49:08.417459', '2016-04-01 01:49:08.417459')
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "movies" ("id","title","rating","description","release_date","created_at","updated_at") VALUES (9, 'Raiders of the Lost Ark', 'PG', NULL, '1981-06-12 00:00:00.000000', '2016-04-01 01:49:08.441180', '2016-04-01 01:49:08.441180')[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "movies" ("id","title","rating","description","release_date","created_at","updated_at") VALUES (10, 'Chicken Run', 'G', NULL, '2000-06-21 00:00:00.000000', '2016-04-01 01:49:08.463826', '2016-04-01 01:49:08.463826')
+  [1m[36m (0.7ms)[0m  [1mDROP TABLE "altered_movies"[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20160401020226')
+  [1m[36m (13.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+  [1m[36m (41.9ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20111119180638)
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (8.8ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20111119180638)
+Migrating to AddDirectorToMovies (20160401020354)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "movies" ADD "director" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20160401020354')[0m
+  [1m[35m (18.0ms)[0m  commit transaction
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+  [1m[36m (9.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20111119180638)
+Migrating to AddDirectorToMovies (20160401020354)
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (0.3ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
