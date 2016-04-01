@@ -65,9 +65,9 @@ class MoviesController < ApplicationController
   end
 
   def similar_movies
-    movie=params[:movie]
+    @movie=params[:movie]
     if not director.nil?
-      @director=movie.director
+      @director=@movie.director
       @movies= Movie.find_all_by_director(@director)
     else
       redirect_to 'index'
