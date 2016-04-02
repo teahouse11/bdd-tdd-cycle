@@ -14,7 +14,7 @@ module NavigationHelpers
     case page_name
 
     when /^the home\s?page$/
-      movie_path
+      movies_path
     
     when /^the edit page for "(.*)"$/
       edit_movie_path(Movie.find_by_title($1)[:id])
@@ -23,7 +23,7 @@ module NavigationHelpers
       movie_path(Movie.find_by_title($1)[:id])
       
     when /^the Similar Movies page for "(.*)"$/
-      similar_movies_movies_path(:movie_id)
+      movie_similar_movies_path(Movie.find_by_title($1)[:id])
       
     #     user_profile_path(User.find_by_login($1))
     # Add more mappings here.
