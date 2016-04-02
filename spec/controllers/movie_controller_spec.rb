@@ -41,8 +41,23 @@ describe MoviesController do
         end
         it "renders the #similar_movies view" do
             {:get => movie_similar_movies_path(@movie.id)}.
-            should route_to(:controller => "movies", :action => "similar_movies", :movie_id=>'1')
+            should route_to(:controller => "movies", :action => "similar_movies", :movie_id =>'1')
         end
     end
     
+    describe 'sad path' do
+         before :each do 
+            @movie= double(Movie, :title => "Star Wars", :director => nil, :id => '1')
+            Movie.stub(:find).with('1').and_return(@movies)
+        end
+        it 'should route for similar_movies' do
+            { :post => movie_similar_movies_path(@movie.id)}.
+            should route_to(:controller => 'movies', :action => 'similar_movies', :movie_id => '1')
+        end
+        it 'should render the a route back to movie/index' do
+            get :similar_movies, :movie_id => "1"
+            response.should redirect_to(movies_path)
+            flash[:notice].should_not be_black
+        end
+    end
 end
